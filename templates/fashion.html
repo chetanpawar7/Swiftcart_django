@@ -1,0 +1,52 @@
+{% extends 'customerbase.html' %}
+{% block title %}-Fashion{% endblock title %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/store.css' %}">            
+<div class="container">
+<div class="py-3 py-md-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="mb-4">Our Products</h4>
+            </div>
+            {% for item in product  %}
+            <div class="col-md-3">
+                <div class="product-card">
+                    <div class="product-card-img">
+                        <label class="stock bg-success">In Stock</label>
+                        <img src="{{item.product_image.url}}" alt="{{item.name}}">
+                    </div>
+                    <div class="product-card-body">
+
+                        <h5 class="product-name">
+                           <a href="">
+                               {{item.name}}
+                           </a>
+                        </h5>
+                        <p class="product-brand">{{item.description}}</p>
+                        <div>
+                            <span class="selling-price">₹{{item.price}}</span>
+                            {% comment %} <span class="original-price">₹799</span> {% endcomment %}
+                        </div>
+                        <div class="mt-2">
+                            <form method ='POST' action ="{% url 'add_to_cart' item.id %}">
+                                {% csrf_token %}
+                             {% comment %} <a href="{% url 'add_to_cart' item.id %}" class="btn btn1">Add To Cart</a>  {% endcomment %}
+                                <button class='btn btn-outline-dark' type = 'submit'><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart </button>
+                                <a href="" class="btn btn-outline-success">
+                                    <i class="fa fa-money"></i> Buy
+                                </a>
+                              </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}
+

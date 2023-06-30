@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{% static 'css/store.css' %}"> 
+  </head>
+  <body>
+  {% if request.user.is_authenticated %}
+  {% include "customer_nav.html" %}
+  {% else %}
+  {% include "navbar.html" %}
+  {% endif %}
+    {% comment %} <h2>Search Results for "{{ query }}"</h2> {% endcomment %}
+    <ul>
+                 
+<div class="container">
+<div class="py-3 py-md-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="mb-4">Search Results for "{{ query }}"</h4>
+            </div>
+            {% for item in product  %}
+            <div class="col-md-3">
+                <div class="product-card">
+                    <div class="product-card-img">
+                        <label class="stock bg-success">In Stock</label>
+                        <img src="{{item.product_image.url}}" alt="{{item.name}}">
+                    </div>
+                    <div class="product-card-body">
+
+                        <h5 class="product-name">
+                           <a href="">
+                               {{item.name}}
+                           </a>
+                        </h5>
+                        <p class="product-brand">{{item.description}}</p>
+                        <div>
+                            <span class="selling-price">₹{{item.price}}</span>
+                            {% comment %} <span class="original-price">₹799</span> {% endcomment %}
+                        </div>
+                        <div class="mt-2">
+                            <form method ='POST' action ="{% url 'add_to_cart' item.id %}">
+                                {% csrf_token %}
+                             {% comment %} <a href="{% url 'add_to_cart' item.id %}" class="btn btn1">Add To Cart</a>  {% endcomment %}
+                                <button class='btn btn-outline-dark' type = 'submit'><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to cart </button>
+                                <a href="" class="btn btn-outline-success">
+                                    <i class="fa fa-money"></i> Buy
+                                </a>
+                              </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+
+      {% comment %} {% for item in product %}
+        <li>{{ item.name }} - {{ item.price }} </li>
+       <img src="{{item.product_image.url}} " alt="{{item.name}}" class="card-img w-25 h-50">
+      {% empty %}
+        <li>No items found.</li>
+
+      {% endfor %} {% endcomment %}
+    </ul>
+    {% comment %} {% include 'footer.html' %} {% endcomment %}
+  
+  </body>
+</html>

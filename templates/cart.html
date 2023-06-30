@@ -1,0 +1,85 @@
+{% extends 'customerbase.html' %}
+{% load static %}
+{% block title %}-cart{% endblock title %}
+{% block content %}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <div class="py-3 py-md-5 bg-light">
+        <div class="container">
+    
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="shopping-cart">
+                        
+                        <div class="cart-header d-none d-sm-none d-mb-block d-lg-block">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Products</h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <h4>Price</h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <h4>Quantity</h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <h4>Remove & Buy</h4>
+                                </div>
+                            </div>
+                        </div>
+                        {% for item in cart  %}
+                        <div class="cart-item">
+                            <div class="row">
+                                <div class="col-md-6 my-auto">
+                                    <a href="">
+                                        <label class="product-name">
+                                            <img src="{{item.product.product_image.url}}" style="width: 50px; height: 50px" alt="{{item.product.name}}">
+                                           {{item.product.name}}
+                                        </label>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 my-auto">
+                                    {% comment %} used property here.|||it is declare in model.py {% endcomment %}
+                                    <label class="price">{{item.total}}</label>
+                                </div>
+                                
+                                <div class="col-md-2 col-7 my-auto">
+                                    <div class="quantity">
+                                        <div class="input-group">
+                                            <label class='input-quantity' >{{item.quantity}}</label>
+                                            {% comment %} <input type="text" value="{{item.quantity}}" class="input-quantity" /> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-5 my-auto">
+                                    <div class="remove">
+                                        <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+                                            {% csrf_token %}
+                                            
+                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i> Remove</button>
+                                            <a href="{% url 'checkout' %}" class="btn btn-outline-success">
+                                                <i class="fa fa-money"></i> buy
+                                            </a>
+                                        </form>
+
+                                        {% comment %} <a href="" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash"></i> Remove
+                                        </a> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                            </div>
+                        </div>
+                                
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js' %}"></script>
+    {% endblock content %}

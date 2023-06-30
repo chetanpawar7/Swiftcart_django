@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'css/navbar.css' %}" rel="stylesheet"> 
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'images/site.webmanifest' %} ">    
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+  </head>
+  <body>
+    <div class="topnav">
+    
+      <div class="main-navbar shadow-sm sticky-top">
+          <div class="top-navbar">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                          <h5 class="brand-name">Swiftcart</h5>
+                      </div>
+                      <div class="col-md-5 my-auto">
+                          <form role="search">
+                              <div class="input-group">
+                                <form method ="GET" action ="{% url 'search_prod' %}">
+                                    {% csrf_token %}
+                                  <input type="text" placeholder="Search your product" class="form-control" name="query"/>
+                                  <button class="btn bg-white" type="submit">
+                                      <i class="fa fa-search"></i>
+                                  </button>
+                                </form>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="col-md-5 my-auto">
+                          <ul class="nav justify-content-end">
+                              
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'customerlogin' %}">
+                                      <i class="fa fa-shopping-login"></i> Login
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{% url 'customersignup' %}">
+                                      <i class="fa fa-register"></i> Register
+                                  </a>
+                              </li>
+                              <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <i class="fa fa-user"></i> Username 
+                                  </a>
+                                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                  <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+                                  <li><a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a></li>
+                                  <li><a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+                                  
+                                  </ul>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                  <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="#">
+                      Swiftcart
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                              <a class="nav-link" href="/">Home</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <i class="fa fa-category"></i> Categories 
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="{% url 'mobile' %}"><i class="fa fa-Mobile"></i>Mobile</a></li>
+                              <li><a class="dropdown-item" href="{% url 'electronics' %}"><i class="fa fa-Electronics"></i>Electronics</a></li>
+                              <li><a class="dropdown-item" href="{% url 'fashion' %}"><i class="fa fa-Fashion"></i>Fashion</a></li>
+                              <li><a class="dropdown-item" href="{% url 'appliance' %}"><i class="fa fa-shopping-Appliance"></i>Appliances</a></li>
+                              </ul>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'store' %}">Products</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Feedback</a>
+                          </li>
+
+                      </ul>
+                  </div>
+              </div>
+          </nav>
+      </div>
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="" async defer></script>
+  </body>
+</html>
