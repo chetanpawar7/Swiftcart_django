@@ -20,9 +20,9 @@ from .import views
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from django.contrib.auth.views import LoginView,LogoutView
-
+from .views import HomeView
 urlpatterns = [
-    path('',views.index,name='index'),
+    path('',HomeView.as_view(),name='index'),
     path('store/',views.store,name='store'),
     path('mobile/',views.mobile,name='mobile'),
     path('electronics/',views.electronics,name='electronics'),

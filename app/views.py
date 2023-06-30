@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.base import TemplateView
 from . import models 
 from django.http import HttpResponseRedirect,HttpResponse
 from django.core.mail import send_mail
@@ -30,8 +31,12 @@ def search_prod(request):
     return render(request, 'search_prod.html',context)
 
 
-def index(request):
-    return render(request, 'index.html')
+# def index(request):
+#     return render(request, 'index.html')
+class HomeView(TemplateView):
+    template_name = "index.html"
+    
+
 
 def customerlogin(request):
     if request.method=='POST':
