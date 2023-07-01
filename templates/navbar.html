@@ -30,7 +30,7 @@
                               <div class="input-group">
                                 <form method ="GET" action ="{% url 'search_prod' %}">
                                     {% csrf_token %}
-                                  <input type="text" placeholder="Search your product" class="form-control" name="query"/>
+                                  <input type="text" placeholder="Search your product" class="form-control" name="query" value="{{query}}"/>
                                   <button class="btn bg-white" type="submit">
                                       <i class="fa fa-search"></i>
                                   </button>
